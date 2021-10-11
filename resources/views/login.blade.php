@@ -67,7 +67,7 @@
                             <img src="{{ ('assets/img/unand.png') }}" width="100" height="150" class="img-fluid"
                                 alt="Responsive image">
                             <h2>{{ __('SISKP') }}</h2>
-                            <p>Sistem Informasi Sistem Informasi Universitas Andalas</p>
+                            <p> Sistem Informasi Universitas Andalas</p>
 
                         </div>
                     </div>

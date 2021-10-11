@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Target
+Route::post('/target/status', 'TargetController@gantiStatusTarget')->name('api.target.status');
+

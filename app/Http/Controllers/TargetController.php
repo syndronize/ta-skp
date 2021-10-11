@@ -155,6 +155,26 @@ class TargetController extends Controller
             ->with('message', 'Data berhasil dihapus');
     }
 
+    public function gantiStatusTarget(Request $request)
+    {
+        $id = $request->id;
+        $getstatus = DB::table('targets')->where('id',$id)->first()->status;
+
+        // dd($getstatus);
+        
+        if($getstatus  == "Approve"){
+            $ket = "Not Approve";
+        }else{
+            $ket = "Approve";
+        }
+        // dd($getstatus);
+       
+        $targets = Target::find($id);
+        $targets->status = $ket;
+        $targets->save();
+        return response()->json(200);
+    }
+
     // public function index()
     // {
     //     //load data

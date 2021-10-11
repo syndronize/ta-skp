@@ -57,13 +57,8 @@
                                     <td class="text-center">{!!\Carbon\Carbon::parse($data->tgl_mulai)->isoFormat('D MMMM Y') .' <br> s/d <br>'. \Carbon\Carbon::parse($data->tgl_selesai)->isoFormat('D MMMM Y')!!}</td>
                                     <td class="text-center">{{ $data->type }}</td>
                                     <td class="text-center">{{ $data->Parent_id }}</td>
-                                    <td class="align-middle">
-                                        <select name="status" id="status" class="form-control" onchange="gantiStatusTarget('{{$data->id}}')">
-                                            <option value="Approve" {{$data->status == "Approve" ? "selected":""}}>Approve</option>
-                                            <option value="Not Approve" {{$data->status == "Not Approve" ? "selected":""}}>Not Approve</option>
-                                        </select>
-
-                                    </td>
+                                    <td class="text-center">{{ $data->status }}</td>
+                                    
                                     <td class="text-center">
                                         <a href="{{ route('target.edit',$data->id) }}" class="btn btn-warning" id="editButton" data-target="#editPegawai">
                                             <i class="cil-pencil"></i>
@@ -91,24 +86,6 @@
 </div>
 
 
-<script>
-    function gantiStatusTarget(id) {
-        $.ajax({
-                method: "POST",
-                url: "{{ route('api.target.status') }}",
-                data: {
-                    id: id,
-                }
-            })
-            .done(function(respone) {
-
-
-                if (respone == 200) {
-                    alert("Ganti Status Target Berhasil")
-                }
-
-            });
-    }
-</script>
+<!--  -->
 
 @endsection
