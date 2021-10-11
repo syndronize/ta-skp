@@ -14,7 +14,7 @@ class checkrole
      * @return mixed
      */
     public function handle($request, Closure $next,...$roles)
-    {
+    {   
         if(in_array($request->user()->role->name,$roles))
         {
             return $next($request);

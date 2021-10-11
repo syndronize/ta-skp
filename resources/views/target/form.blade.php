@@ -136,10 +136,17 @@
                 </div>
                 <div class="form-group">
                     <label for="type">Tipe</label>
-                    <input type="text" class="form-control @error('type') {{ 'is-invalid' }} @enderror" value="{{ old('type') ?? $target->type ?? ''}}" name="type" placeholder="Type Here">
+                    <select name="type" class="form-control" id="type">
+                        <option value="">-- Pilih --</option>
+                        <option value="Kreativitas">Kreativitas</option>
+                        <option value="Tambahan">Tambahan</option>
+                        <option value="Tugas Jabatan">Tugas Jabatan</option>
+                    </select>
+                    
+                    <!-- <input type="text" class="form-control @error('type') {{ 'is-invalid' }} @enderror" value="{{ old('type') ?? $target->type ?? ''}}" name="type" placeholder="Type Here">
                     @error('type')
                     <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    @enderror -->
                 </div>
             </div>
             <!-- /.card-body -->

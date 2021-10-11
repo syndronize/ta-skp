@@ -5,3 +5,7 @@
 @if(auth()->user()->role->name == "Pegawai")
     @include('layouts.menu.pegawai')
 @endif
+
+@if(auth()->user()->role->name == "Pejabat")
+    @include('layouts.menu.pejabat')
+@endif

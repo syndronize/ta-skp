@@ -3,7 +3,7 @@
     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/home">
             <i class="c-sidebar-nav-icon cil-speedometer"></i>
             Dashboard</a></li>
-   
+  
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
             <i class="c-sidebar-nav-icon cil-layers"></i>
             <use xlink:href="{{asset('template/@coreui/icons/sprites/free.svg#cil-puzzle')}}"></use>
@@ -15,14 +15,15 @@
 
             <!-- <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{url('targettahunan')}}"><span class="c-sidebar-nav-icon"></span>Target Tahunan </a></li> -->
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{url('realiation')}}"><span class="c-sidebar-nav-icon"></span>Realisasi Tahunan </a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{url('/')}}"><span class="c-sidebar-nav-icon"></span>Nilai Capaian </a></li>
+            <!-- <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{url('/')}}"><span class="c-sidebar-nav-icon"></span>Nilai Capaian </a></li> -->
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('skps')}}"><span class="c-sidebar-nav-icon"></span>SKP </a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{url('/')}}"><span class="c-sidebar-nav-icon"></span>File SKP </a></li>
+            <!-- <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{url('/')}}"><span class="c-sidebar-nav-icon"></span>File SKP </a></li> -->
         </ul>
     </li>
     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/kelolauser">
-          
-          </a></li>
+           
+           </a></li>
+
 </ul>
 <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
 </div>
