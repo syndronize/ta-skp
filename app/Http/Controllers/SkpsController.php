@@ -134,11 +134,11 @@ class SkpsController extends Controller
     public function update(Request $request, Skps $skps)
     {
         $validator = Validator::make($request->all(), [
-            'nip_rated'     => 'required',
-            'periode_id'     => 'required',
-            'rated_unit_id'     => 'required',
-            'rated_position_id'     => 'required',
-            'rated_rankgroup_id'     => 'required',
+            'nip_rated'     => 'required_if:role,Admin',
+            'periode_id'     => 'required_if:role,Admin',
+            'rated_unit_id'     => 'required_if:role,Admin',
+            'rated_position_id'     => 'required_if:role,Admin',
+            'rated_rankgroup_id'     => 'required_if:role,Admin',
             'commitment'     => 'required',
             'discipline'     => 'required',
             'cooperation'     => 'required',
@@ -151,10 +151,10 @@ class SkpsController extends Controller
             'recommendation'     => 'required',
             'start_date'     => 'required',
             'date_given_to_superiors'     => 'required',
-            'evaluator_rankgroup_id'     => 'required',
-            'nip_evaluator'     => 'required',
-            'evaluator_unit_id'     => 'required',
-            'evaluator_position_id'     => 'required',
+            'evaluator_rankgroup_id'     => 'required_if:role,Admin',
+            'nip_evaluator'     => 'required_if:role,Admin',
+            'evaluator_unit_id'     => 'required_if:role,Admin',
+            'evaluator_position_id'     => 'required_if:role,Admin',
         ]);
         if ($validator->fails()) {
             return redirect()
@@ -162,27 +162,31 @@ class SkpsController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $skps->nip_rated = $request->input('nip_rated');
-            $skps->periode_id = $request->input('periode_id');
-            $skps->rated_unit_id = $request->input('rated_unit_id');
-            $skps->rated_position_id = $request->input('rated_position_id');
-            $skps->rated_rankgroup_id = $request->input('rated_rankgroup_id');
-            $skps->commitment = $request->input('commitment');
-            $skps->discipline = $request->input('discipline');
-            $skps->cooperation = $request->input('cooperation');
-            $skps->leadership = $request->input('leadership');
-            $skps->integrity = $request->input('integrity');
-            $skps->service_oriented = $request->input('service_oriented');
-            $skps->objection_rated = $request->input('objection_rated');
-            $skps->response_evaluator = $request->input('response_evaluator');
-            $skps->superior_decision = $request->input('superior_decision');
-            $skps->recommendation = $request->input('recommendation');
-            $skps->start_date = $request->input('start_date');
-            $skps->date_given_to_superiors = $request->input('date_given_to_superiors');
-            $skps->nip_evaluator = $request->input('nip_evaluator');
-            $skps->evaluator_rankgroup_id = $request->input('evaluator_rankgroup_id');
-            $skps->evaluator_unit_id = $request->input('evaluator_unit_id');
-            $skps->evaluator_position_id = $request->input('evaluator_position_id');
+            if($request->role=='Admin'){
+                $skps->nip_rated = $request->input('nip_rated');
+                $skps->periode_id = $request->input('periode_id');
+                $skps->rated_unit_id = $request->input('rated_unit_id');
+                $skps->rated_position_id = $request->input('rated_position_id');
+                $skps->rated_rankgroup_id = $request->input('rated_rankgroup_id');
+                $skps->nip_evaluator = $request->input('nip_evaluator');
+                $skps->evaluator_rankgroup_id = $request->input('evaluator_rankgroup_id');
+                $skps->evaluator_unit_id = $request->input('evaluator_unit_id');
+                $skps->evaluator_position_id = $request->input('evaluator_position_id');
+            }
+
+                $skps->commitment = $request->input('commitment');
+                $skps->discipline = $request->input('discipline');
+                $skps->cooperation = $request->input('cooperation');
+                $skps->leadership = $request->input('leadership');
+                $skps->integrity = $request->input('integrity');
+                $skps->service_oriented = $request->input('service_oriented');
+                $skps->objection_rated = $request->input('objection_rated');
+                $skps->response_evaluator = $request->input('response_evaluator');
+                $skps->superior_decision = $request->input('superior_decision');
+                $skps->recommendation = $request->input('recommendation');
+                $skps->start_date = $request->input('start_date');
+                $skps->date_given_to_superiors = $request->input('date_given_to_superiors');
+
             $skps->save();
 
             return redirect()

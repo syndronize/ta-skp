@@ -14,9 +14,12 @@ class checkrole
      * @return mixed
      */
     public function handle($request, Closure $next,...$roles)
-    {   
-        if(in_array($request->user()->role->name,$roles))
+    {
+        // dd($roles);
+        // dd(auth()->user()->role);
+        if(in_array(auth()->user()->role->name,$roles))
         {
+
             return $next($request);
         }
         return redirect()->route('home');

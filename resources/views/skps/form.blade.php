@@ -20,12 +20,13 @@
             <div class="card-body">
                 <!-- <input type="hidden" name="id_pengguna" value="{{session('id_pengguna')}}"> -->
                 <div class="row">
+                    @if(auth()->user()->role->name=='Admin')
                     <div class="form-group  col-md-12">
                         <label>Nama Dinilai</label>
                         <select name="nip_rated" id="nip_rated" class="form-control @error('nip_rated') {{ 'is-invalid' }} @enderror">
                             <option value="">Select</option>
                             @foreach($users as $no => $users)
-                            <option value="{{ $users->nip }}">
+                            <option value="{{ $users->nip }}" {{$skps->nip_rated == $users->nip ? 'selected' : ''}}>
                                 {{ $users->name}}
                             </option>
                             @endforeach
@@ -47,7 +48,7 @@
                         <select name="periode_id" id="periode_id" class="form-control @error('periode_id') {{ 'is-invalid' }} @enderror">
                             <option value="">Select</option>
                             @foreach($periode as $no => $periode)
-                            <option value="{{ $periode->id }}">
+                            <option value="{{ $periode->id }}" {{$skps->periode_id == $periode->id ? 'selected' : ''}}>
                                 {!!\Carbon\Carbon::parse($periode->start_datte)->isoFormat('D MMMM Y') .' <br> s/d <br>'. \Carbon\Carbon::parse($periode->finish_date)->isoFormat('D MMMM Y')!!}
                             </option>
                             @endforeach
@@ -69,7 +70,7 @@
                         <select name="rated_unit_id" id="rated_unit_id" class="form-control @error('rated_unit_id') {{ 'is-invalid' }} @enderror">
                             <option value="">Select</option>
                             @foreach($unit as $no => $unit)
-                            <option value="{{ $unit->id }}">
+                            <option value="{{ $unit->id }}" {{$skps->rated_unit_id == $unit->id ? 'selected' : ''}}>
                                 {{ $unit->name}}
                             </option>
                             @endforeach
@@ -91,7 +92,7 @@
                         <select name="rated_position_id" id="rated_position_id" class="form-control @error('rated_position_id') {{ 'is-invalid' }} @enderror">
                             <option value="">Select</option>
                             @foreach($position as $no => $position)
-                            <option value="{{ $position->id }}">
+                            <option value="{{ $position->id }}" {{$skps->rated_posititon_id == $position->id ? 'selected' : ''}}>
                                 {{ $position->name}}
                             </option>
                             @endforeach
@@ -113,7 +114,7 @@
                         <select name="rated_rankgroup_id" id="rated_rankgroup_id" class="form-control @error('rated_rankgroup_id') {{ 'is-invalid' }} @enderror">
                             <option value="">Select</option>
                             @foreach($rankgroup as $no => $rankgroup)
-                            <option value="{{ $rankgroup->id }}">
+                            <option value="{{ $rankgroup->id }}" {{$skps->rated_rankgroup_id == $rankgroup->id ? 'selected' : ''}}>
                                 {{ $rankgroup->name}}
                             </option>
                             @endforeach
@@ -128,6 +129,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="commitment">Komitmen</label>
@@ -214,6 +216,7 @@
                     @enderror
                 </div>
                 <div class="row">
+                @if(auth()->user()->role->name=='Admin')
                     <div class="form-group  col-md-12">
                         <label>Nama Penilai</label>
                         <select name="nip_evaluator" id="nip_evaluator" class="form-control @error('nip_evaluator') {{ 'is-invalid' }} @enderror">
@@ -222,7 +225,7 @@
                             @endphp
                             <option value="">Select</option>
                             @foreach($test as $no => $usersevaluator)
-                            <option value="{{ $usersevaluator->nip }}">
+                            <option value="{{ $usersevaluator->nip }}" {{$skps->nip_evaluator == $usersevaluator->nip ? 'selected' : ''}}>
                                 {{ $usersevaluator->name}}
                             </option>
                             @endforeach
@@ -247,7 +250,7 @@
                             @endphp
                             <option value="">Select</option>
                             @foreach($units as $no => $unit)
-                            <option value="{{ $unit->id }}">
+                            <option value="{{ $unit->id }}" {{$skps->evaluator_unit_id == $unit->id ? 'selected' : ''}}>
                                 {{ $unit->name}}
                             </option>
                             @endforeach
@@ -272,7 +275,7 @@
                             @endphp
                             <option value="">Select</option>
                             @foreach($positions as $no => $position)
-                            <option value="{{ $position->id }}">
+                            <option value="{{ $position->id }}" {{$skps->evaluator_position_id == $position->id ? 'selected' : ''}}>
                                 {{ $position->name}}
                             </option>
                             @endforeach
@@ -297,7 +300,7 @@
                             @endphp
                             <option value="">Select</option>
                             @foreach($rank_group as $no => $rankgroup)
-                            <option value="{{ $rankgroup->id }}">
+                            <option value="{{ $rankgroup->id }}" {{$skps->evaluator_rankgroup_id == $rankgroup->id ? 'selected' : ''}}>
                                 {{ $rankgroup->name}}
                             </option>
                             @endforeach
@@ -312,11 +315,14 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    @endif
                 </div>
+
             </div>
             <!-- /.card-body -->
 
             <div class="card-footer">
+                <input type="hidden" name="role" value="{{auth()->user()->role->name}}">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
